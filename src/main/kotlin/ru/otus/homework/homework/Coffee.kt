@@ -20,32 +20,18 @@ class SimpleCoffee : Coffee {
     override fun description() = "Простой кофе"
 }
 
-class MilkDecorator(private val coffee: Coffee) : Coffee {
-    override fun cost(): Int {
-        TODO("Not yet implemented")
-    }
+abstract class IngredientDecorator(
+    private val coffee: Coffee,
+    private val ingredient: String,
+    private val ingredientCost: Int
+) : Coffee {
+    override fun cost(): Int = coffee.cost() + ingredientCost
 
-    override fun description(): String {
-        TODO("Not yet implemented")
-    }
+    override fun description(): String = "${coffee.description()}, $ingredient"
 }
 
-class SugarDecorator(private val coffee: Coffee) : Coffee {
-    override fun cost(): Int {
-        TODO("Not yet implemented")
-    }
+class MilkDecorator(coffee: Coffee) : IngredientDecorator(coffee, "молоко", 50)
 
-    override fun description(): String {
-        TODO("Not yet implemented")
-    }
-}
+class SugarDecorator(coffee: Coffee) : IngredientDecorator(coffee, "сахар", 20)
 
-class VanillaDecorator(private val coffee: Coffee) : Coffee {
-    override fun cost(): Int {
-        TODO("Not yet implemented")
-    }
-
-    override fun description(): String {
-        TODO("Not yet implemented")
-    }
-}
+class VanillaDecorator(coffee: Coffee) : IngredientDecorator(coffee, "ваниль", 70)
