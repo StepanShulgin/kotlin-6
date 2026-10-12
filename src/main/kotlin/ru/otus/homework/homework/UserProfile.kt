@@ -47,7 +47,7 @@ interface UserProfile {
 /**
  * Проверка емейла на корректность
  */
-private val emailRegex = Regex("^[A-Za-z](.*)([@])(.+)(\\.)(.+)")
+private val emailRegex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\\.[A-Za-z0-9-]+)+$")
 
 /**
  * Реализация простого [UserProfile].
